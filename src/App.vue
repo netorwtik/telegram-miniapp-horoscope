@@ -1,26 +1,46 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="min-h-screen bg-gray-100">
+    <LanguageSwitcher @language-changed="setLanguage" />
+    <ZodiacGrid v-if="!selectedSign" @select-sign="selectSign" />
+    <ZodiacDetail
+      v-else
+      :sign="selectedSign"
+      :language="language"
+      @back="selectedSign = null"
+    />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import LanguageSwitcher from './components/LanguageSwitcher.vue';
+  import ZodiacGrid from './components/ZodiacGrid.vue';
+  import ZodiacDetail from './components/ZodiacDetail.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  export default {
+    components: {
+      LanguageSwitcher,
+      ZodiacGrid,
+      ZodiacDetail,
+    },
+    data() {
+      return {
+        language: 'en',
+        selectedSign: null,
+      };
+    },
+    methods: {
+      setLanguage(lang) {
+        this.language = lang;
+      },
+      selectSign(sign) {
+        this.selectedSign = sign;
+      },
+    },
+    created() {
+      this.language =
+        window.Telegram.WebApp.initDataUnsafe?.user?.language_code === 'ru'
+          ? 'ru'
+          : 'en';
+    },
+  };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
