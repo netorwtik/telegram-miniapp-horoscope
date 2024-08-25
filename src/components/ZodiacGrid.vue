@@ -1,73 +1,51 @@
 <template>
-  <div class="grid grid-cols-2 gap-4 p-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
     <ZodiacCard
-      v-for="sign in zodiacSigns"
-      :key="sign.name"
-      :sign="sign"
-      @click="showDetails(sign)"
+      v-for="zodiac in zodiacs"
+      :key="zodiac.name"
+      :name="zodiac.name"
+      :period="zodiac.period"
+      :icon="zodiac.icon"
+      @click="showDetails(zodiac)"
     />
   </div>
 </template>
 
 <script>
+  import { useI18n } from 'vue-i18n';
   import ZodiacCard from './ZodiacCard.vue';
 
   export default {
     components: { ZodiacCard },
-    data() {
-      return {
-        zodiacSigns: [
-          {
-            name: 'Aries',
-            period: 'March 21 - April 19',
-            icon: './assets/image/aries.jpg',
-          },
-          { name: 'Taurus', period: 'April 20 - May 20', icon: 'taurus.png' },
-          { name: 'Gemini', period: 'May 21 - June 20', icon: 'gemini.png' },
-          { name: 'Cancer', period: 'June 21 - July 22', icon: 'cancer.png' },
-          { name: 'Leo', period: 'July 23 - August 22', icon: 'leo.png' },
-          {
-            name: 'Virgo',
-            period: 'August 23 - September 22',
-            icon: 'virgo.png',
-          },
-          {
-            name: 'Libra',
-            period: 'September 23 - October 22',
-            icon: 'libra.png',
-          },
-          {
-            name: 'Scorpio',
-            period: 'October 23 - November 21',
-            icon: 'scorpio.png',
-          },
-          {
-            name: 'Sagittarius',
-            period: 'November 22 - December 21',
-            icon: 'sagittarius.png',
-          },
-          {
-            name: 'Capricorn',
-            period: 'December 22 - January 19',
-            icon: 'capricorn.png',
-          },
-          {
-            name: 'Aquarius',
-            period: 'January 20 - February 18',
-            icon: 'aquarius.png',
-          },
-          {
-            name: 'Pisces',
-            period: 'February 19 - March 20',
-            icon: 'pisces.png',
-          },
-        ],
+    setup(_, { emit }) {
+      const { t } = useI18n();
+
+      const zodiacs = [
+        {
+          name: t('zodiac.aries'),
+          period: t('period.aries'),
+          icon: 'aries.png',
+        },
+        {
+          name: t('zodiac.taurus'),
+          period: t('period.taurus'),
+          icon: 'taurus.png',
+        },
+        // остальные знаки
+      ];
+
+      const showDetails = zodiac => {
+        emit('show-details', zodiac);
       };
-    },
-    methods: {
-      showDetails(sign) {
-        this.$emit('select-sign', sign);
-      },
+
+      return {
+        zodiacs,
+        showDetails,
+      };
     },
   };
 </script>
+
+<style scoped>
+  /* Адаптивные стили для сетки */
+</style>

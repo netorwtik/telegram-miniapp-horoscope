@@ -1,26 +1,25 @@
 <template>
-  <div class="flex justify-center mb-4">
-    <button
-      @click="switchLanguage('en')"
-      class="px-4 py-2 bg-blue-500 text-white rounded-md mx-2 hover:bg-blue-600"
-    >
-      English
-    </button>
-    <button
-      @click="switchLanguage('ru')"
-      class="px-4 py-2 bg-blue-500 text-white rounded-md mx-2 hover:bg-blue-600"
-    >
-      Русский
-    </button>
-  </div>
+  <button @click="switchLanguage">
+    {{ $t('switch_language') }}
+  </button>
 </template>
 
 <script>
+  import { useI18n } from 'vue-i18n';
+
   export default {
-    methods: {
-      switchLanguage(lang) {
-        this.$emit('language-changed', lang);
-      },
+    setup() {
+      const { locale } = useI18n();
+
+      const switchLanguage = () => {
+        locale.value = locale.value === 'ru' ? 'en' : 'ru';
+      };
+
+      return {
+        switchLanguage,
+      };
     },
   };
 </script>
+
+<style scoped></style>
