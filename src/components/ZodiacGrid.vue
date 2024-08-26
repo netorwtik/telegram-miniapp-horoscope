@@ -31,7 +31,56 @@
           period: t('period.taurus'),
           icon: 'taurus.png',
         },
-        // остальные знаки
+        {
+          name: t('zodiac.gemini'),
+          period: t('period.gemini'),
+          icon: 'gemini.png',
+        },
+        {
+          name: t('zodiac.cancer'),
+          period: t('period.cancer'),
+          icon: 'cancer.png',
+        },
+        {
+          name: t('zodiac.leo'),
+          period: t('period.leo'),
+          icon: 'leo.png',
+        },
+        {
+          name: t('zodiac.virgo'),
+          period: t('period.virgo'),
+          icon: 'virgo.png',
+        },
+        {
+          name: t('zodiac.libra'),
+          period: t('period.libra'),
+          icon: 'libra.png',
+        },
+        {
+          name: t('zodiac.scorpio'),
+          period: t('period.scorpio'),
+          icon: 'scorpio.png',
+        },
+        {
+          name: t('zodiac.sagittarius'),
+          period: t('period.sagittarius'),
+          icon: 'sagittarius.png',
+        },
+        {
+          name: t('zodiac.capricorn'),
+          period: t('period.capricorn'),
+          icon: 'capricorn.png',
+        },
+        {
+          name: t('zodiac.aquarius'),
+          period: t('period.aquarius'),
+          icon: 'aquarius.png',
+        },
+        {
+          name: t('zodiac.pisces'),
+          period: t('period.pisces'),
+          icon: 'pisces.png',
+        },
       ];
 
       const showDetails = zodiac => {
@@ -46,6 +95,4 @@
   };
 </script>
 
-<style scoped>
-  /* Адаптивные стили для сетки */
-</style>
+<style scoped></style>
